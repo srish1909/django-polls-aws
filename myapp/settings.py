@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-t&$$p92co^1l78l)(5g^$eyn5oq(p=@4juvlrynj4##zv5)0^a'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-t&$$p92co^1l78l)(5g^$eyn5oq(p=@4juvlrynj4##zv5)0^a')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -74,10 +74,15 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import os
+
+# Use /tmp directory for SQLite database on AWS Elastic Beanstalk
+# Database
+# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # stored in app directory
     }
 }
 

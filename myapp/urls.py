@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Django Polls App is running! <a href='/admin/'>Admin</a> | <a href='/polls/'>Polls</a>")
 
 urlpatterns = [
+    path("", home, name="home"),
     path("polls/", include("polls.urls")),
     path("admin/", admin.site.urls),
 ]
