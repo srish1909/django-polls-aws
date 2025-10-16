@@ -2,5 +2,25 @@ language: python
 python:
   - "3.12"
 
+install:
+  - pip install -r requirements.txt
+  - pip install black flake8 coverage coveralls
+
 script:
-  - echo "Hello from Travis CI!"
+  - black --check .
+  - flake8 .
+  - coverage run manage.py test
+
+after_success:
+  - coveralls
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  region: "us-east-1"
+  app: "django-polls-aws"
+  env: "Django-polls-aws-env"
+  bucket_name: "elasticbeanstalk-us-east-1-300823008200"
+  on:
+    branch: main
