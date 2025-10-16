@@ -19,8 +19,8 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   region: "us-east-1"               # your AWS region
-  app: "myapp"                      # your EB Application name
-  env: "myapp-env"                  # your EB Environment name
-  bucket_name: "elasticbeanstalk-us-east-1-<your-account-id>" # replace <your-account-id>
+  app: "django-polls-aws"           # your EB Application name
+  env: "Django-polls-aws-env"       # your EB Environment name
+  bucket_name: "elasticbeanstalk-us-east-1-300823008200" # your AWS account ID
   on:
     branch: main
