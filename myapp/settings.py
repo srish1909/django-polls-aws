@@ -48,11 +48,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myapp.wsgi.application'
 
-# ✅ SQLite for Elastic Beanstalk
+# ✅ SQLite for Elastic Beanstalk with proper permissions
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': /tmp/ 'db.sqlite3',  # Use project directory for better reliability
+        'NAME': '/var/app/db.sqlite3',  # Use /var/app directory for write permissions
+        'OPTIONS': {
+            'timeout': 20,
+        }
     }
 }
 
