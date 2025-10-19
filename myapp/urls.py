@@ -14,12 +14,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.http import HttpResponse
 
+
 def home(request):
-    return HttpResponse("Django Polls App is running! <a href='/admin/'>Admin</a> | <a href='/polls/'>Polls</a>")
+    return HttpResponse(
+        "Django Polls App is running! <a href='/admin/'>Admin</a> | <a href='/polls/'>Polls</a>"  # noqa: E501
+    )
+
 
 urlpatterns = [
     path("", home, name="home"),
