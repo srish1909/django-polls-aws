@@ -14,14 +14,13 @@ script:
 after_success:
   - coveralls
 
-# Deploy section temporarily disabled - check AWS credentials and EB environment
-# deploy:
-#   provider: elasticbeanstalk
-#   access_key_id: $AWS_ACCESS_KEY_ID
-#   secret_access_key: $AWS_SECRET_ACCESS_KEY
-#   region: "us-east-1"
-#   app: "django-polls-aws"
-#   env: "Django-polls-aws-env"
-#   bucket_name: "elasticbeanstalk-us-east-1-300823008200"
-#   on:
-#     branch: main
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  region: "us-east-1"
+  app: "django-polls-aws"
+  env: "Django-polls-aws-env"
+  bucket_name: "elasticbeanstalk-us-east-1-300823008200"
+  on:
+    branch: main
